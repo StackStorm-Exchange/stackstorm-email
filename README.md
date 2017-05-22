@@ -2,25 +2,35 @@
 
 This pack allows integration with EMail Services.
 
+
+## Configuration
+
+Copy the example configuration in [email.yaml.example](./email.yaml.example)
+to `/opt/stackstorm/configs/email.yaml` and edit as required.
+
+Configure values as described in the sections below.
+
 ## Sensors
 ### SMTP Sensor
 
-The SMTP Sensor runs a local server as defined in config.yaml, receiving email messages and emitting triggers into the system. This server is indiscriminate with what messages are received, and for whom. Basically, a catch-all for emails into the system.
+The SMTP Sensor runs a local server as defined in `email.yaml`, receiving email messages and emitting triggers into the system. This server is indiscriminate with what messages are received, and for whom. Basically, a catch-all for emails into the system.
 
 As such, things like email filtering should happen upstream, or this should be run in a controlled environment.
 
-```
-# config.yaml
+It takes these configuration options (defaults shown):
+
+```yaml
 smtp_listen_ip: '127.0.0.1'
-smtp_listen_port: 25
+smtp_listen_port: 1025
 ```
 
 ### IMAP Sensor
 
-The IMAP Sensor logs into any number of IMAP servers as defined in config.yaml, polling for unread email messages and emitting triggers into the system. Sensor looks at one account and one folder at a time, and can be independently configured.
+The IMAP Sensor logs into any number of IMAP servers as defined in `email.yaml`, polling for unread email messages and emitting triggers into the system. Sensor looks at one account and one folder at a time, and can be independently configured.
 
-```
-# config.yaml
+Typical configuration looks like this:
+
+```yaml
 imap_mailboxes:
   gmail_main:
     server: "gmail.imap.com"
@@ -43,8 +53,7 @@ attachment_datastore_ttl: 1800
 
 The following attachment settings can be configured:
 
-* ``download_attachments`` - True to download the attachment and store them in the
-  datastore.
+* ``download_attachments`` - True to download the attachment and store them in the datastore
 * ``max_attachment_size`` - Maximum size of download attachment bytes. If an
   attachment exceeds this size the attachment won't be stored in the datastore.
 * ``attachment_datastore_ttl`` - TTL in seconds for the attachment value which is
@@ -61,7 +70,7 @@ from the datastore after 30 minutes.
 Keep in mind that all the attachments which contain binary (non plain-text, mime-type
 != text/plain) data are base64 encoded before they are stored in the datastore.
 
-#### email.imap.message trigger
+### email.imap.message trigger
 
 Example trigger payload:
 

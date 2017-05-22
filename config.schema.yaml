@@ -41,20 +41,20 @@ imap_mailboxes:
 max_attachment_size:
   description: "Maxium size of downloaded attachment in bytes (default 1024)"
   type: "integer"
-  required: "false"
+  required: false
   default: 1024
 attachment_datastore_ttl:
   description: "TTL in seconds to keep attachments in the datastore. Default 1800"
   type: "integer"
-  required: "false"
+  required: false
   default: 1800
 smtp_listen_ip: 
   description: "IP address to for SMTP sensor to listen on"
   type: "string"
-  required: "false"
+  required: false
   default: "127.0.0.1"
 smtp_listen_port:
   description: "Port for SMTP sensor to listen on. Default 1025"
   type: "integer"
-  required: "false"
+  required: false
   default: 1025

@@ -62,7 +62,7 @@ The following attachment settings can be configured:
 If ``download_attachments`` attribute for a particular IMAP server is set to ``True``,
 attachments will be automatically downloaded and stored in the built-in datastore under
 a unique key. This key will be available in the trigger payload (see the trigger example
-bellow) so you can retrieve those attachments later (e.g. inside an action).
+below) so you can retrieve those attachments later (e.g. inside an action).
 
 By default, those values have a TTL of 30 minutes which means they will be automatically remvoed
 from the datastore after 30 minutes.

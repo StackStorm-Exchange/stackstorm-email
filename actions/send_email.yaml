@@ -23,5 +23,5 @@
       required: true
     account:
       type: "string"
-      description: "Account to use. Must be configured in the email pack config.yaml"
+      description: "Account to use. Must be configured in email.yaml"
       required: true

@@ -10,6 +10,10 @@ to `/opt/stackstorm/configs/email.yaml` and edit as required.
 
 Configure values as described in the sections below.
 
+**Note** : When modifying the configuration in `/opt/stackstorm/configs/` please
+           remember to tell StackStorm to load these new values by running
+           `st2ctl reload --register-configs`
+
 ## Sensors
 ### SMTP Sensor
 

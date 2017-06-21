@@ -6,7 +6,9 @@ imap_mailboxes:
     username: "lindsay@stackstorm.com"
     password: "super_S3c4e3t!"
     ssl: true
-    download_attachments: True
+    download_attachments: true
+    starttls: true
+    smtp_auth: true
 max_attachment_size: 1024
 attachment_datastore_ttl: 1800
 smtp_listen_ip: '127.0.0.1'

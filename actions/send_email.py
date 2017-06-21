@@ -26,8 +26,10 @@ class SendEmail(Action):
 
         s = SMTP(account_data['server'], int(account_data['port']), timeout=20)
         s.ehlo()
-        s.starttls()
-        s.login(account_data['username'], account_data['password'])
+        if account_data.get('starttls', True) is True:
+            s.starttls()
+        if account_data.get('smtp_auth', True) is True:
+            s.login(account_data['username'], account_data['password'])
         s.sendmail(email_from, email_to, msg.as_string())
         s.quit()
         return

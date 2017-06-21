@@ -29,10 +29,18 @@ imap_mailboxes:
         description: "Set to False to disable SSL. Default True"
         type: "boolean"
         default: true
+      smtp_auth:
+        description: "Authenticate username and password with SMTP server to send email. Default True"
+        type: "boolean"
+        default: true
+      starttls:
+        description: "Use TLS for the connection to the SMTP server when sending email. Default True"
+        type: "boolean"
+        default: true
       download_attachments:
         description: "Set to True to download attachments to datastore. Default False"
         type: "boolean"
-        default: False
+        default: false
       folder:
         description: "Folder to check for email. Default INBOX"
         type: "string"
@@ -48,7 +56,7 @@ attachment_datastore_ttl:
   type: "integer"
   required: false
   default: 1800
-smtp_listen_ip: 
+smtp_listen_ip:
   description: "IP address to for SMTP sensor to listen on"
   type: "string"
   required: false

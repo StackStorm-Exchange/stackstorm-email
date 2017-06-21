@@ -14,6 +14,14 @@ Configure values as described in the sections below.
            remember to tell StackStorm to load these new values by running
            `st2ctl reload --register-configs`
 
+# Actions
+
+### send_email
+
+When sending email the configuration option `starttls` can be used to enable TLS
+for the connection.  `smtp_auth` is used to control if user authentication is required before
+sending the message to the SMTP server.
+
 ## Sensors
 ### SMTP Sensor
 

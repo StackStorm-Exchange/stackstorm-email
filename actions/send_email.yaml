@@ -7,11 +7,11 @@
   parameters:
     email_from:
       type: "string"
-      description: "Email to use as FROM."
+      description: "Email address to use as FROM."
       required: true
     email_to:
-      type: "string"
-      description: "Email to send TO."
+      type: "array"
+      description: "Email addresses to send TO."
       required: true
     subject:
       type: "string"

@@ -21,7 +21,7 @@ class SendEmail(Action):
         msg = MIMEMultipart()
         msg['Subject'] = subject
         msg['From'] = email_from
-        msg['To'] = email_to
+        msg['To'] = ", ".join(email_to)
         msg.attach(MIMEText(message, 'plain'))
 
         s = SMTP(account_data['server'], int(account_data['port']), timeout=20)

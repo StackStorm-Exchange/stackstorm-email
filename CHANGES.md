@@ -1,5 +1,10 @@
 # Change Log
 
+# 0.4.0
+
+- Changed `email_to` data type from string to list in order to support multiple email address
+  destinations.
+
 # 0.3.0
 
 - Updated action `runner_type` from `run-python` to `python-script`

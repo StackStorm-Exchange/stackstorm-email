@@ -24,8 +24,8 @@ class SMTPSensor(Sensor):
         self._trigger = 'email.smtp.message'
         self._logger = self._sensor_service.get_logger(__name__)
         self._server = None
-        self._listen_ip = self._config.get('smtp_listen_ip', '127.0.0.1')
-        self._listen_port = self._config.get('smtp_listen_port', 1025)
+        self._listen_ip = self._config.get('sensor_smtp_listen_ip', '127.0.0.1')
+        self._listen_port = self._config.get('sensor_smtp_listen_port', 1025)
 
     def setup(self):
         self._logger.debug('[SMTPSensor]: entering setup')

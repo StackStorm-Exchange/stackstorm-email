@@ -1,12 +1,57 @@
 ---
-imap_mailboxes:
-  description: "Mailbox parameters"
-  type: "object"
-  required: false
+smtp_accounts:
+  description: "SMTP accounts"
+  type: "array"
+  required: true
   items:
     type: "object"
     required: true
     properties:
+      name:
+        description: "Name of the account"
+        type: "string"
+        secret: false
+        required: true
+      server:
+        description: "Email server name - e.g. imap.gmail.com"
+        type: "string"
+        secret: false
+        required: true
+      username:
+        description: "Mailbox username"
+        type: "string"
+        required: true
+      password:
+        description: "Mailbox password."
+        type: "string"
+        secret: true
+        required: true
+      port:
+        description: "Port to connect to - e.g. 465."
+        type: "integer"
+        default: 465
+        required: true
+      secure:
+        description: "Set to False to disable secure protocol. Default value is True."
+        type: "boolean"
+        default: true
+      smtp_auth:
+        description: "Authenticate username and password with SMTP server to send email. Default True"
+        type: "boolean"
+        default: true
+imap_accounts:
+  description: "IMAP accounts"
+  type: "array"
+  required: true
+  items:
+    type: "object"
+    required: true
+    properties:
+      name:
+        description: "Name of the account"
+        type: "string"
+        secret: false
+        required: true
       server:
         description: "Email server name - e.g. imap.gmail.com"
         type: "string"
@@ -24,17 +69,10 @@ imap_mailboxes:
       port:
         description: "Port to connect to - e.g. 993, 143."
         type: "integer"
+        default: 993
         required: true
-      ssl:
-        description: "Set to False to disable SSL. Default True"
-        type: "boolean"
-        default: true
-      smtp_auth:
-        description: "Authenticate username and password with SMTP server to send email. Default True"
-        type: "boolean"
-        default: true
-      starttls:
-        description: "Use TLS for the connection to the SMTP server when sending email. Default True"
+      secure:
+        description: "Set to False to disable secure protocol. Default value is True."
         type: "boolean"
         default: true
       download_attachments:
@@ -56,12 +94,12 @@ attachment_datastore_ttl:
   type: "integer"
   required: false
   default: 1800
-smtp_listen_ip:
+sensor_smtp_listen_ip:
   description: "IP address to for SMTP sensor to listen on"
   type: "string"
   required: false
   default: "127.0.0.1"
-smtp_listen_port:
+sensor_smtp_listen_port:
   description: "Port for SMTP sensor to listen on. Default 1025"
   type: "integer"
   required: false

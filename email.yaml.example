@@ -1,21 +1,36 @@
 ---
 smtp_accounts:
-  - name: gmail
-    password: "my_secret"
+  - name: me
+    password: "super_S3c4e3t!"
     port: 465
     secure: true
-    server: "smtp.gmail.com"
+    server: "smtp.example.com"
     smtp_auth: true
-    username: "example@gmail.com"
+    username: "me@example.com"
+  - name: you
+    password: "topsecret!"
+    port: 587
+    secure: true
+    server: "smtp.example.com"
+    smtp_auth: true
+    username: "you@example.com"
 imap_accounts:
-  - name: main
+  - name: me
     download_attachments: true
     folder: "INBOX"
     password: "super_S3c4e3t!"
     port: 993
     secure: true
-    server: "imap.gmail.com"
-    username: "lindsay@stackstorm.com"
+    server: "imap.example.com"
+    username: "me@example.com"
+  - name: you
+    download_attachments: true
+    folder: "INBOX"
+    password: "topsecret!"
+    port: 993
+    secure: true
+    server: "imap.example.com"
+    username: "you@example.com"
 max_attachment_size: 1024
 attachment_datastore_ttl: 1800
 sensor_smtp_listen_ip: '127.0.0.1'

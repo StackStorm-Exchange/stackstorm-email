@@ -22,6 +22,36 @@ When sending email the configuration option `secure` can be used to enable TLS
 for the connection. `smtp_auth` is used to control if user authentication is required before
 sending the message to the SMTP server.
 
+```yaml
+smtp_accounts:
+  - name: me
+    password: "super_S3c4e3t!"
+    port: 465
+    secure: true
+    server: "smtp.example.com"
+    smtp_auth: true
+    username: "me@example.com"
+  - name: you
+    password: "topsecret!"
+    port: 587
+    secure: true
+    server: "smtp.example.com"
+    smtp_auth: true
+    username: "you@example.com"
+```
+
+Ensure your configuration is registered:
+
+```
+st2ctl reload --register-configs
+```
+
+You can send an email from `me@example.com` to `you@example.com` using the following:
+
+```
+st2 run email.send_email account=example email_to=you@example.com message="Hi there, wow!" email_from="me@example.com" subject="Intros"
+```
+
 ## Sensors
 ### SMTP Sensor
 
@@ -50,14 +80,22 @@ Typical IMAP related configuration options look like this:
 ```yaml
 attachment_datastore_ttl: 1800
 imap_accounts:
-- download_attachments: false
-  folder: INBOX
-  name: example
-  password: "superawesomepassword"
-  port: 993
-  secure: true
-  server: "imap.example.com"
-  username: "james@example.com"
+  - name: example
+    download_attachments: true
+    folder: "INBOX"
+    password: "super_S3c4e3t!"
+    port: 993
+    secure: true
+    server: "imap.example.com"
+    username: "me@example.com"
+  - name: example2
+    download_attachments: true
+    folder: "INBOX"
+    password: "topsecret!"
+    port: 993
+    secure: true
+    server: "imap.example2.com"
+    username: "me@example2.com"
 max_attachment_size: 1024
 ```
 

@@ -1,6 +1,6 @@
-# EMail Integration Pack
+# Email Integration Pack
 
-This pack allows integration with EMail Services.
+This pack allows integration with Email Services.
 
 
 ## Configuration
@@ -18,65 +18,101 @@ Configure values as described in the sections below.
 
 ### send_email
 
-When sending email the configuration option `starttls` can be used to enable TLS
-for the connection.  `smtp_auth` is used to control if user authentication is required before
+When sending email the configuration option `secure` can be used to enable TLS
+for the connection. `smtp_auth` is used to control if user authentication is required before
 sending the message to the SMTP server.
+
+```yaml
+smtp_accounts:
+  - name: me
+    password: "super_S3c4e3t!"
+    port: 465
+    secure: true
+    server: "smtp.example.com"
+    smtp_auth: true
+    username: "me@example.com"
+  - name: you
+    password: "topsecret!"
+    port: 587
+    secure: true
+    server: "smtp.example.com"
+    smtp_auth: true
+    username: "you@example.com"
+```
+
+Ensure your configuration is registered:
+
+```
+st2ctl reload --register-configs
+```
+
+You can send an email from `me@example.com` to `you@example.com` using the following:
+
+```
+st2 run email.send_email account=example email_to=you@example.com message="Hi there, wow!" email_from="me@example.com" subject="Intros"
+```
 
 ## Sensors
 ### SMTP Sensor
 
-The SMTP Sensor runs a local server as defined in `email.yaml`, receiving email messages and emitting triggers into the system. This server is indiscriminate with what messages are received, and for whom. Basically, a catch-all for emails into the system.
+The SMTP Sensor runs a local server as defined in `email.yaml`, receiving email messages and
+emitting triggers into the system. This server is indiscriminate with what messages are received,
+and for whom. Basically, a catch-all for emails into the system.
 
-As such, things like email filtering should happen upstream, or this should be run in a controlled environment.
+As such, things like email filtering should happen upstream, or this should be run in a controlled
+environment.
 
 It takes these configuration options (defaults shown):
 
 ```yaml
-smtp_listen_ip: '127.0.0.1'
-smtp_listen_port: 1025
+sensor_smtp_listen_ip: '127.0.0.1'
+sensor_smtp_listen_port: 1025
 ```
 
 ### IMAP Sensor
 
-The IMAP Sensor logs into any number of IMAP servers as defined in `email.yaml`, polling for unread email messages and emitting triggers into the system. Sensor looks at one account and one folder at a time, and can be independently configured.
+The IMAP Sensor logs into any number of IMAP servers as defined in `email.yaml`, polling for unread
+email messages and emitting triggers into the system. Sensor looks at one account and one folder at
+a time, and can be independently configured.
 
-Typical configuration looks like this:
+Typical IMAP related configuration options look like this:
 
 ```yaml
-imap_mailboxes:
-  gmail_main:
-    server: "gmail.imap.com"
-    port: 993
-    username: "james@stackstorm.com"
-    password: "superawesomepassword"
-    ssl: True
-    download_attachments: False
-  alternate:
-    server: "mail.stackstorm.net"
-    port: 143
-    username: "stanley"
-    password: "esteetew"
-    folder: "StackStorm"
-    ssl: True
-    download_attachments: True
-max_attachment_size: 1024
 attachment_datastore_ttl: 1800
+imap_accounts:
+  - name: example
+    download_attachments: true
+    folder: "INBOX"
+    password: "super_S3c4e3t!"
+    port: 993
+    secure: true
+    server: "imap.example.com"
+    username: "me@example.com"
+  - name: example2
+    download_attachments: true
+    folder: "INBOX"
+    password: "topsecret!"
+    port: 993
+    secure: true
+    server: "imap.example2.com"
+    username: "me@example2.com"
+max_attachment_size: 1024
 ```
 
 The following attachment settings can be configured:
 
+* ``attachment_datastore_ttl`` - TTL in seconds for the attachment value which is
+  stored in the datastore.
 * ``download_attachments`` - True to download the attachment and store them in the datastore
 * ``max_attachment_size`` - Maximum size of download attachment bytes. If an
   attachment exceeds this size the attachment won't be stored in the datastore.
-* ``attachment_datastore_ttl`` - TTL in seconds for the attachment value which is
-  stored in the datastore.
 
 If ``download_attachments`` attribute for a particular IMAP server is set to ``True``,
 attachments will be automatically downloaded and stored in the built-in datastore under
 a unique key. This key will be available in the trigger payload (see the trigger example
 below) so you can retrieve those attachments later (e.g. inside an action).
 
-By default, those values have a TTL of 30 minutes which means they will be automatically remvoed
+By default, those values have a TTL of 30 minutes which means they will be automatically removed
 from the datastore after 30 minutes.
 
 Keep in mind that all the attachments which contain binary (non plain-text, mime-type

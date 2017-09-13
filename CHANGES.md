@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.0.0
+
+- Replaced 'imap_mailboxes' with 'imap_accounts' and 'smtp_accounts'. Replaced 'smtp_list_ip'
+  and 'smtp_listen_port' with 'sensor_smtp_listen_ip' and 'sensor_smtp_listen_port' respectively.
+  You must update any existing email.yaml file.
+
 # 0.4.0
 
 - Changed `email_to` data type from string to list in order to support multiple email address

@@ -37,7 +37,7 @@ class IMAPSensor(PollingSensor):
                                                      DEFAULT_MAX_ATTACHMENT_SIZE)
         self._attachment_datastore_ttl = self._config.get('attachment_datastore_ttl',
                                                           DEFAULT_MAX_ATTACHMENT_SIZE)
-        self._mailboxes = {}
+        self._accounts = {}
 
     def setup(self):
         self._logger.debug('[IMAPSensor]: entering setup')
@@ -45,10 +45,10 @@ class IMAPSensor(PollingSensor):
     def poll(self):
         self._logger.debug('[IMAPSensor]: entering poll')
 
-        if 'imap_mailboxes' in self._config:
-            self._parse_mailboxes(self._config['imap_mailboxes'])
+        if 'imap_accounts' in self._config:
+            self._parse_accounts(self._config['imap_accounts'])
 
-        for name, values in self._mailboxes.items():
+        for name, values in self._accounts.items():
             mailbox = values['connection']
             download_attachments = values['download_attachments']
             mailbox_metadata = values['mailbox_metadata']
@@ -61,7 +61,7 @@ class IMAPSensor(PollingSensor):
     def cleanup(self):
         self._logger.debug('[IMAPSensor]: entering cleanup')
 
-        for name, values in self._mailboxes.items():
+        for name, values in self._accounts.items():
             mailbox = values['connection']
             self._logger.debug('[IMAPSensor]: Disconnecting from {0}'.format(name))
             mailbox.quit()
@@ -75,14 +75,15 @@ class IMAPSensor(PollingSensor):
     def remove_trigger(self, trigger):
         pass
 
-    def _parse_mailboxes(self, mailboxes):
-        for mailbox, config in mailboxes.items():
+    def _parse_accounts(self, accounts):
+        for config in accounts:
+            mailbox = config.get('name', None)
             server = config.get('server', 'localhost')
             port = config.get('port', 143)
             user = config.get('username', None)
             password = config.get('password', None)
-            folder = config.get('mailbox', 'INBOX')
-            ssl = config.get('ssl', False)
+            folder = config.get('folder', 'INBOX')
+            ssl = config.get('secure', False)
             download_attachments = config.get('download_attachments', DEFAULT_DOWNLOAD_ATTACHMENTS)
 
             if not user or not password:
@@ -113,7 +114,7 @@ class IMAPSensor(PollingSensor):
                     'ssl': ssl
                 }
             }
-            self._mailboxes[mailbox] = item
+            self._accounts[mailbox] = item
 
     def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata,
                                   download_attachments=False):

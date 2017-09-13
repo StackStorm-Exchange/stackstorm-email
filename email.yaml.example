@@ -1,15 +1,37 @@
 ---
-imap_mailboxes:
-  main:
-    server: "imap.gmail.com"
-    port: 993
-    username: "lindsay@stackstorm.com"
+smtp_accounts:
+  - name: me
     password: "super_S3c4e3t!"
-    ssl: true
-    download_attachments: true
-    starttls: true
+    port: 465
+    secure: true
+    server: "smtp.example.com"
     smtp_auth: true
+    username: "me@example.com"
+  - name: you
+    password: "topsecret!"
+    port: 587
+    secure: true
+    server: "smtp.example.com"
+    smtp_auth: true
+    username: "you@example.com"
+imap_accounts:
+  - name: me
+    download_attachments: true
+    folder: "INBOX"
+    password: "super_S3c4e3t!"
+    port: 993
+    secure: true
+    server: "imap.example.com"
+    username: "me@example.com"
+  - name: you
+    download_attachments: true
+    folder: "INBOX"
+    password: "topsecret!"
+    port: 993
+    secure: true
+    server: "imap.example.com"
+    username: "you@example.com"
 max_attachment_size: 1024
 attachment_datastore_ttl: 1800
-smtp_listen_ip: '127.0.0.1'
-smtp_listen_port: 25
+sensor_smtp_listen_ip: '127.0.0.1'
+sensor_smtp_listen_port: 25

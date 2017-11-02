@@ -1,4 +1,4 @@
-from st2actions.runners.pythonrunner import Action
+from st2common.runners.base_action import Action
 from smtplib import SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText

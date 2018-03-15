@@ -27,5 +27,8 @@
       required: true
     mime:
       type: "string"
-      description: "html | plain"
+      description: "The mime type of the message (html or plain)."
       default: "text"
+      enum:
+        - "plain"
+        - "html"

@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.0.2
+
+- Add `mime` parameter to the send_email action.  If the value is `html`, the mime type of the email will be `text/html`.  Otherwise, the mime will be `text/plain`.
+
 # 1.0.0
 
 - Replaced 'imap_mailboxes' with 'imap_accounts' and 'smtp_accounts'. Replaced 'smtp_list_ip'

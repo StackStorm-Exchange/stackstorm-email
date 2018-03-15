@@ -5,7 +5,8 @@ from email.mime.text import MIMEText
 
 
 class SendEmail(Action):
-    def run(self, email_from, email_to, subject, message, account):
+    def run(self, email_from, email_to, subject, message, account, mime):
+        mimeType = 'html' if mime == 'html' else 'plain'
         accounts = self.config.get('smtp_accounts', None)
         if accounts is None:
             raise ValueError('"smtp_accounts" config value is required to send email.')
@@ -25,7 +26,7 @@ class SendEmail(Action):
         msg['Subject'] = subject
         msg['From'] = email_from
         msg['To'] = ", ".join(email_to)
-        msg.attach(MIMEText(message, 'plain'))
+        msg.attach(MIMEText(message, mimeType))
 
         s = SMTP(account_data['server'], int(account_data['port']), timeout=20)
         s.ehlo()

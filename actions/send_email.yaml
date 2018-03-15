@@ -25,3 +25,10 @@
       type: "string"
       description: "Account to use. Must be configured in email.yaml"
       required: true
+    mime:
+      type: "string"
+      description: "The mime type of the message (html or plain)."
+      default: "plain"
+      enum:
+        - "plain"
+        - "html"

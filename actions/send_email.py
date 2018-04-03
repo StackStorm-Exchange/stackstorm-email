@@ -1,11 +1,13 @@
+import os
 from st2common.runners.base_action import Action
 from smtplib import SMTP
+from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
 class SendEmail(Action):
-    def run(self, email_from, email_to, subject, message, account, mime="plain"):
+    def run(self, email_from, email_to, subject, message, account, mime="plain", attachments=None):
 
         if mime not in ['plain', 'html']:
             raise ValueError('Invalid mime provided: ' + mime)
@@ -30,6 +32,13 @@ class SendEmail(Action):
         msg['From'] = email_from
         msg['To'] = ", ".join(email_to)
         msg.attach(MIMEText(message, mime))
+
+        attachments = attachments or tuple()
+        for filepath in attachments:
+            with open(filepath, 'rb') as f:
+                part = MIMEApplication(f.read(), Name=os.path.basename(filepath))
+            part['Content-Disposition'] = 'attachment; filename="{}"'.format(os.path.basename(filepath))
+            msg.attach(part)
 
         s = SMTP(account_data['server'], int(account_data['port']), timeout=20)
         s.ehlo()

@@ -32,3 +32,6 @@
       enum:
         - "plain"
         - "html"
+    attachments:
+      type: "array"
+      description: "The absolute file path(s) as attachments."

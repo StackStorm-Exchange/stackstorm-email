@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.0.3
+
+- Add `attachments` parameter to the send_email action. Expected a list of file paths if given, to be attached to the email.
+
 # 1.0.2
 
 - Add `mime` parameter to the send_email action.  If the value is `html`, the mime type of the email will be `text/html`.  Otherwise, the mime will be `text/plain`.

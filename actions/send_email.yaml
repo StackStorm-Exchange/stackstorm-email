@@ -34,4 +34,6 @@
         - "html"
     attachments:
       type: "array"
-      description: "The absolute file path(s) as attachments."
+      items:
+        type: "string"
+      description: "The absolute paths to the files to be included as attachments."

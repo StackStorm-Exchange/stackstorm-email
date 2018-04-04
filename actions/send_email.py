@@ -35,9 +35,10 @@ class SendEmail(Action):
 
         attachments = attachments or tuple()
         for filepath in attachments:
+            filename = os.path.basename(filepath)
             with open(filepath, 'rb') as f:
-                part = MIMEApplication(f.read(), Name=os.path.basename(filepath))
-            part['Content-Disposition'] = 'attachment; filename="{}"'.format(os.path.basename(filepath))
+                part = MIMEApplication(f.read(), Name=filename)
+            part['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
             msg.attach(part)
 
         s = SMTP(account_data['server'], int(account_data['port']), timeout=20)

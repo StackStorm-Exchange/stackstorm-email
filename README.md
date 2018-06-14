@@ -2,6 +2,10 @@
 
 This pack allows integration with Email Services.
 
+## Pre-Requisites
+
+This pack installs Python dependencies. Your system must have a compiler installed first: - e.g. `apt install gcc`
+or `yum install gcc`.
 
 ## Configuration
 

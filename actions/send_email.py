@@ -1,6 +1,7 @@
 import os
 from st2common.runners.base_action import Action
 from smtplib import SMTP
+from email.header import Header
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -28,10 +29,10 @@ class SendEmail(Action):
                            'Available accounts are: {}'.format(account, ",".join(kv.keys())))
 
         msg = MIMEMultipart()
-        msg['Subject'] = subject
+        msg['Subject'] = Header(subject, 'utf-8')
         msg['From'] = email_from
         msg['To'] = ", ".join(email_to)
-        msg.attach(MIMEText(message, mime))
+        msg.attach(MIMEText(message, mime, 'utf-8'))
 
         attachments = attachments or tuple()
         for filepath in attachments:

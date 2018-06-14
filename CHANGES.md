@@ -3,6 +3,7 @@
 # 1.1.0
 
 - Updated to flanker >= 0.9.0
+- Updated send_email.py to support Unicode in subject and message fields
 
 # 1.0.3
 

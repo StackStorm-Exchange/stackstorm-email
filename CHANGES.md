@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.1.0
+
+- Updated to flanker >= 0.9.0
+
 # 1.0.3
 
 - Add `attachments` parameter to the send_email action. Expected a list of file paths if given, to be attached to the email.

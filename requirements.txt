@@ -1,2 +1,2 @@
-flanker>=0.4.33
+flanker>=0.9.0
 easyimap>=0.6.1

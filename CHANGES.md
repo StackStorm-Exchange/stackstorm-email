@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.1.1
+
+- Version bump to fix tagging issues
+
 # 1.1.0
 
 - Updated to flanker >= 0.9.0

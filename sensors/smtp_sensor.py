@@ -12,6 +12,7 @@ import smtpd_green as smtpd
 from flanker import mime
 import hashlib
 import base64
+import six
 
 from st2reactor.sensor.base import Sensor
 
@@ -59,6 +60,22 @@ class St2SMTPServer(smtpd.SMTPServer):  # pylint: disable=no-member
         self._trigger = trigger
         self._sensor_service = sensor_service
 
+    def _flattern_headers(self, headers):
+        # Flattern headers and make sure they only contain simple types so they
+        # can be serialized in a trigger
+        result = []
+
+        for pair in headers:
+            name = pair[0]
+            value = pair[1]
+
+            if not isinstance(value, six.string_types):
+                value = str(value)
+
+            result.append([name, value])
+
+        return result
+
     def process_message(self, peer, mailfrom, rcpttos, data):
         self._logger.debug('posting message from {} to {}'.format(mailfrom, rcpttos))
 
@@ -68,6 +85,8 @@ class St2SMTPServer(smtpd.SMTPServer):  # pylint: disable=no-member
 
     def parse_message(self, mailfrom, rcpttos, data):
         message = mime.from_string(data)
+        headers = message.headers.items()
+        headers = self._flattern_headers(headers=headers)
         payload = {
             'from': None,
             'to': None,
@@ -76,7 +95,7 @@ class St2SMTPServer(smtpd.SMTPServer):  # pylint: disable=no-member
             'body_plain': None,
             'body_html': None,
             'attachments': [],
-            'headers': message.headers.items(),
+            'headers': headers,
         }
 
         # Try to get the addressee via headers, or

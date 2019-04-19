@@ -251,3 +251,10 @@ Example trigger payload:
     }
 }
 ```
+
+### Troubleshooting
+
+If you are trying to use Gmail (e.g. imap.gmail.com or smtp.gmail.com with a Gmail or Google apps account):
+
+* For IMAP and SMTP use an application specific password
+* For IMAP start with port 587. Currently this is the only port that will give you errors and not just close the connection. 

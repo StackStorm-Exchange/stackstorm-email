@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 
 
 class SendEmail(Action):
-    def run(self, email_from, email_to, subject, message, account, mime="plain", attachments=None):
+    def run(self, email_from, email_to, email_cc, subject, message, account, mime="plain", attachments=None):
 
         if mime not in ['plain', 'html']:
             raise ValueError('Invalid mime provided: ' + mime)
@@ -32,7 +32,9 @@ class SendEmail(Action):
         msg['Subject'] = Header(subject, 'utf-8')
         msg['From'] = email_from
         msg['To'] = ", ".join(email_to)
+        msg['Cc'] = ", ".join(email_cc)
         msg.attach(MIMEText(message, mime, 'utf-8'))
+        email_to += email_cc
 
         attachments = attachments or tuple()
         for filepath in attachments:

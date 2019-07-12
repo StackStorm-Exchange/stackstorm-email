@@ -13,6 +13,10 @@
       type: "array"
       description: "Email addresses to send TO."
       required: true
+    email_cc:
+      type: "array"
+      description: "Email addresses to send Cc."
+      required: false
     subject:
       type: "string"
       description: "Subject of the email"

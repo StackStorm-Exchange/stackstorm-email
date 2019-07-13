@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 
 
 class SendEmail(Action):
-    def run(self, email_from, email_to, email_cc, subject, message, account, mime="plain", attachments=None):
+    def run(self, email_from, email_to, subject, message, account, email_cc=[], mime="plain", attachments=None):
 
         if mime not in ['plain', 'html']:
             raise ValueError('Invalid mime provided: ' + mime)

@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.1.3
+
+- Minor linting fixes
+
 # 1.1.1
 
 - Version bump to fix tagging issues

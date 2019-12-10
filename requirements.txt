@@ -1,4 +1,4 @@
 # PR to use tld dependency that still supports py2
-git+https://github.com/bradchiappetta/flanker.git@c8e8eba8ba9a3510c6ed2ccb7caf3609d4391a65
+git+https://github.com/bradchiappetta/flanker.git@9166e7240568f5c6e654a5067db66f5a68bca73e
 # flanker>=0.9.0
 easyimap>=0.6.1

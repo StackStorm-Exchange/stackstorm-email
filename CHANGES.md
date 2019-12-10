@@ -1,5 +1,10 @@
 # Change Log
 
+# 1.1.4
+
+- Point requirements.txt to a fork of flanker with the tld package pinned to 0.10. See https
+://github.com/StackStorm-Exchange/stackstorm-email/issues/27 for more info.
+
 # 1.1.3
 
 - Minor linting fixes

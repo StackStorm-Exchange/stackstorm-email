@@ -2,8 +2,9 @@
 
 # 1.1.4
 
-- Point requirements.txt to a fork of flanker with the tld package pinned to 0.10. See https
-://github.com/StackStorm-Exchange/stackstorm-email/issues/27 for more info.
+- Point requirements.txt to a fork of flanker with the tld package pinned to 0.10. See #27 for
+ more info. This fix is needed because flanker doesn't pin the tld package at the moment, and v0
+ .10 is the last version to support py2. 
 
 # 1.1.3
 

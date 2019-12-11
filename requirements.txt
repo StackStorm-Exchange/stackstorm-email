@@ -1,2 +1,4 @@
+tld<0.11; python_version < '3.0'
+tld
 flanker>=0.9.0
 easyimap>=0.6.1

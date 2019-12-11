@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.1.4
+
+- Pin tld dependency to <0.11 for Python < 3.0
+
 # 1.1.3
 
 - Minor linting fixes

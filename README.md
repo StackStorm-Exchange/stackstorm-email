@@ -30,7 +30,7 @@ sending the message to the SMTP server.
 smtp_accounts:
   - name: me
     password: "super_S3c4e3t!"
-    port: 465
+    port: 587
     secure: true
     server: "smtp.example.com"
     smtp_auth: true

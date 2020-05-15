@@ -132,7 +132,7 @@ Example trigger payload:
     "message_id": "<CAJMHEmJs_5hO_PS9huzTAOv60xkTvYz7ETd1=WXFdpa-bzGpUA@mail.gmail.com>",
     "from": "Tomaž Muraus<tomaz@tomaz.me>",
     "to": "Tomaz Muraus <tomaz.muraus@gmail.com>",
-    "subject": "test email with attachment"
+    "subject": "test email with attachment",
     "body": "hello from stackstorm!\n",
     "headers": [
         [

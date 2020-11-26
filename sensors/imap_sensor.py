@@ -29,7 +29,8 @@ class IMAPSensor(PollingSensor):
     def __init__(self, sensor_service, config=None, poll_interval=DEFAULT_POLLING_INTERVAL):
         super(IMAPSensor, self).__init__(sensor_service=sensor_service,
                                          config=config,
-                                         poll_interval=self._config.get('email_polling_interval', poll_interval))
+                                         poll_interval=self._config.get('email_polling_interval',
+                                                                        poll_interval))
 
         self._trigger = 'email.imap.message'
         self._logger = self._sensor_service.get_logger(__name__)

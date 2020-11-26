@@ -104,3 +104,8 @@ sensor_smtp_listen_port:
   type: "integer"
   required: false
   default: 1025
+email_polling_interval:
+  description: "Polling interval for IMAP sensor"
+  type: "integer"
+  required: false
+  default: 30

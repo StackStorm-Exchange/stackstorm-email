@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.1.6
+
+- Use the correct variable for _attachment_datastore_ttl in imap_sensor.
 # 1.1.5
 
 - Add explicit support for Python 2 and 3

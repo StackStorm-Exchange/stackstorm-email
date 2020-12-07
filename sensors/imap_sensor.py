@@ -36,7 +36,7 @@ class IMAPSensor(PollingSensor):
         self._max_attachment_size = self._config.get('max_attachment_size',
                                                      DEFAULT_MAX_ATTACHMENT_SIZE)
         self._attachment_datastore_ttl = self._config.get('attachment_datastore_ttl',
-                                                          DEFAULT_MAX_ATTACHMENT_SIZE)
+                                                          DEFAULT_ATTACHMENT_DATASTORE_TTL)
         self._accounts = {}
 
     def setup(self):

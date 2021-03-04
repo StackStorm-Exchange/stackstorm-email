@@ -1,6 +1,6 @@
 import hashlib
 import base64
-
+import sys
 import six
 import eventlet
 import easyimap
@@ -130,7 +130,10 @@ class IMAPSensor(PollingSensor):
 
     def _process_message(self, uid, mailbox, mailbox_metadata,
                          download_attachments=DEFAULT_DOWNLOAD_ATTACHMENTS):
-        message = mailbox.mail(uid, include_raw=True)
+        if (sys.version_info > (3, 0)):
+            message = mailbox.mail(str(uid), include_raw=True)
+        else:
+            message = mailbox.mail(uid, include_raw=True)
         mime_msg = mime.from_string(message.raw)
 
         body = message.body

@@ -1,5 +1,9 @@
 # Change Log
 
+# 2.0.1
+
+- Fix Python 3 related issue in IMAPSensor
+
 # 2.0.0
 
 * Drop Python 2.7 support

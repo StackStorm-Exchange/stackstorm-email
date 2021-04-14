@@ -5,6 +5,7 @@ from email.header import Header
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.utils import formatdate
 
 
 class SendEmail(Action):
@@ -33,6 +34,7 @@ class SendEmail(Action):
         msg['Subject'] = Header(subject, 'utf-8')
         msg['From'] = email_from
         msg['To'] = ", ".join(email_to)
+        msg['Date'] = formatdate(localtime=True)
         msg.attach(MIMEText(message, mime, 'utf-8'))
         if email_cc is None:
             email_cc = []

@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.1.6
+
+- Add ability to update the polling interval of the IMAP sensor using configuration
+
 # 1.1.5
 
 - Add explicit support for Python 2 and 3

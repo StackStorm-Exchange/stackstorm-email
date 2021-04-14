@@ -130,7 +130,7 @@ class IMAPSensor(PollingSensor):
 
     def _process_message(self, uid, mailbox, mailbox_metadata,
                          download_attachments=DEFAULT_DOWNLOAD_ATTACHMENTS):
-        message = mailbox.mail(uid, include_raw=True)
+        message = mailbox.mail(str(uid), include_raw=True)
         mime_msg = mime.from_string(message.raw)
 
         body = message.body

@@ -22,13 +22,15 @@ eventlet.monkey_patch(
 DEFAULT_DOWNLOAD_ATTACHMENTS = False
 DEFAULT_MAX_ATTACHMENT_SIZE = 1024
 DEFAULT_ATTACHMENT_DATASTORE_TTL = 1800
+DEFAULT_POLLING_INTERVAL = 30
 
 
 class IMAPSensor(PollingSensor):
-    def __init__(self, sensor_service, config=None, poll_interval=30):
+    def __init__(self, sensor_service, config=None, poll_interval=DEFAULT_POLLING_INTERVAL):
         super(IMAPSensor, self).__init__(sensor_service=sensor_service,
                                          config=config,
-                                         poll_interval=poll_interval)
+                                         poll_interval=self._config.get('email_polling_interval',
+                                                                        poll_interval))
 
         self._trigger = 'email.imap.message'
         self._logger = self._sensor_service.get_logger(__name__)

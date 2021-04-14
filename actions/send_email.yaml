@@ -39,5 +39,5 @@
     attachments:
       type: "array"
       items:
-        type: "string"
-      description: "The absolute paths to the files to be included as attachments."
+        type: "Object"
+      description: "Array of object containing the absolute paths to the files and the file id"

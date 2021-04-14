@@ -6,7 +6,7 @@ keywords:
   - email
   - messaging
   - imap
-version: 2.0.1
+version: 2.0.2
 author: James Fryman
 email: james@stackstorm.com
 python_versions:

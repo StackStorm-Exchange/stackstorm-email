@@ -2,7 +2,6 @@
 smtp_accounts:
   description: "SMTP accounts"
   type: "array"
-  required: true
   items:
     type: "object"
     required: true
@@ -42,7 +41,6 @@ smtp_accounts:
 imap_accounts:
   description: "IMAP accounts"
   type: "array"
-  required: true
   items:
     type: "object"
     required: true

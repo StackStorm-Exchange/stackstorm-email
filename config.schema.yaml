@@ -20,12 +20,10 @@ smtp_accounts:
       username:
         description: "Mailbox username"
         type: "string"
-        required: true
       password:
         description: "Mailbox password."
         type: "string"
         secret: true
-        required: true
       port:
         description: "Port to connect to - e.g. 465, 587."
         type: "integer"
@@ -38,7 +36,7 @@ smtp_accounts:
       smtp_auth:
         description: "Authenticate username and password with SMTP server to send email. Default True"
         type: "boolean"
-        default: true
+        default: false
 imap_accounts:
   description: "IMAP accounts"
   type: "array"

@@ -55,7 +55,7 @@ class SendEmail(Action):
         s.ehlo()
         if account_data.get('secure', True) is True:
             s.starttls()
-        if account_data.get('smtp_auth', False) is True:
+        if account_data.get('smtp_auth', True) is True:
             s.login(account_data.get('username', str()), account_data.get('password', str()))
         s.sendmail(email_from, email_to, msg.as_string())
         s.quit()

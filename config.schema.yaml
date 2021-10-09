@@ -34,9 +34,11 @@ smtp_accounts:
         type: "boolean"
         default: true
       smtp_auth:
-        description: "Authenticate username and password with SMTP server to send email. Default True"
+        description: >-
+          Authenticate username and password with SMTP server to send email.
+          Set to False if SMTP authentication is not required. Default True
         type: "boolean"
-        default: false
+        default: true
 imap_accounts:
   description: "IMAP accounts"
   type: "array"

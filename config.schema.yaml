@@ -18,10 +18,10 @@ smtp_accounts:
         secret: false
         required: true
       username:
-        description: "Mailbox username"
+        description: "Mailbox username. Should be specified when smtp_auth is true"
         type: "string"
       password:
-        description: "Mailbox password."
+        description: "Mailbox password. Should be specified when smtp_auth is true"
         type: "string"
         secret: true
       port:

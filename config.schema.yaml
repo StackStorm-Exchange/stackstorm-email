@@ -18,14 +18,12 @@ smtp_accounts:
         secret: false
         required: true
       username:
-        description: "Mailbox username"
+        description: "Mailbox username. Should be specified when smtp_auth is true"
         type: "string"
-        required: true
       password:
-        description: "Mailbox password."
+        description: "Mailbox password. Should be specified when smtp_auth is true"
         type: "string"
         secret: true
-        required: true
       port:
         description: "Port to connect to - e.g. 465, 587."
         type: "integer"
@@ -36,7 +34,9 @@ smtp_accounts:
         type: "boolean"
         default: true
       smtp_auth:
-        description: "Authenticate username and password with SMTP server to send email. Default True"
+        description: >-
+          Authenticate username and password with SMTP server to send email.
+          Set to False if SMTP authentication is not required. Default True
         type: "boolean"
         default: true
 imap_accounts:

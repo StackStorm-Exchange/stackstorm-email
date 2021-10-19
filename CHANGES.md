@@ -1,5 +1,9 @@
 # Change Log
 
+# 2.0.3
+
+- Set smtp username and password as not required. 
+
 # 2.0.2
 
 - Add date to header in the SendEmail action so the spam score will be lower

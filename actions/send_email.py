@@ -17,7 +17,8 @@ class SendEmail(Action):
 
         accounts = self.config.get('smtp_accounts', None)
         if accounts is None:
-            raise ValueError('"smtp_accounts" config value is required to send email.')
+            raise ValueError(
+                '"smtp_accounts" config value is required to send email.')
         if not accounts:
             raise ValueError('at least one account is required to send email.')
 
@@ -44,11 +45,14 @@ class SendEmail(Action):
             email_to += email_cc
 
         attachments = attachments or tuple()
-        for filepath in attachments:
-            filename = os.path.basename(filepath)
-            with open(filepath, 'rb') as f:
+        for el in attachments:
+            filename = os.path.basename(el['filePath'])
+            with open(el['filePath'], 'rb') as f:
                 part = MIMEApplication(f.read(), Name=filename)
-            part['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
+            part['Content-Disposition'] = 'attachment; filename="{}"'.format(
+                filename)
+            part['Content-ID'] = '<{}>'.format(el['fileId'])
+
             msg.attach(part)
 
         s = SMTP(account_data['server'], int(account_data['port']), timeout=20)
